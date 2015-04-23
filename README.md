@@ -1,3 +1,4 @@
 # VCFloatingActionButton
 A Floating Action Button just like Google inbox for iOS.
-![Demo](http://imgur.com/gallery/yh4MwCB/)
+
+![](http://i.imgur.com/yh4MwCB.gif)
