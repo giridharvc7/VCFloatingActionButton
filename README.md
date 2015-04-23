@@ -32,6 +32,5 @@ addButton.hideWhileScrolling = YES;
 P.S: This was done in a short time, please feel free to contribute
 
 ##License
-MIT License, feel free to use it :)
-
+MIT License :)
 
