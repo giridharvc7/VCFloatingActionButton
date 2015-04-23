@@ -1,11 +1,13 @@
 # VCFloatingActionButton
 A Floating Action Button just like Google inbox for iOS.
 
+
+![](http://i.imgur.com/yh4MwCB.gif)
 ## Using this in your project
 - Import the VCFloatingActionButton to your project
 - Use VCFloatingActionButton.h 
 
-*** Initialize the button and add it as a subview ***
+**Initialize the button and add it as a subview**
 ```
 VCFloatingActionButton *addButton = [[VCFloatingActionButton alloc]initWithFrame:floatFrame normalImage:[UIImage imageNamed:@"plus"] andPressedImage:[UIImage imageNamed:@"cross"] withScrollview:_dummyTable];
 ```
@@ -32,4 +34,4 @@ P.S: This was done in a short time, please feel free to contribute
 ##License
 MIT License, feel free to use it :)
 
-![](http://i.imgur.com/yh4MwCB.gif)
+
