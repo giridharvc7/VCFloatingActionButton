@@ -69,11 +69,7 @@ CGFloat buttonToScreenHeight;
     if (bgScroller!=nil)
     {
         _hideWhileScrolling = hideWhileScrolling;
-        if (!hideWhileScrolling)
-        {
-            [bgScroller removeObserver:self forKeyPath:@"contentOffset"];
-        }
-        else
+        if (hideWhileScrolling)
         {
             [bgScroller addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
         }
