@@ -32,7 +32,7 @@ CGFloat buttonToScreenHeight;
     if (self)
     {
         windowView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-        _mainWindow = [UIApplication sharedApplication].keyWindow;
+        _mainWindow = [[[UIApplication sharedApplication] windows] firstObject];
         _buttonView = [[UIView alloc]initWithFrame:frame];
         _buttonView.backgroundColor = [UIColor clearColor];
         _buttonView.userInteractionEnabled = YES;
@@ -91,19 +91,25 @@ CGFloat buttonToScreenHeight;
     [_buttonView addGestureRecognizer:buttonTap3];
     
     
-    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-    UIVisualEffectView *vsview = [[UIVisualEffectView alloc]initWithEffect:blur];
     
-
+    
     _bgView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     _bgView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
     _bgView.alpha = 0;
     _bgView.userInteractionEnabled = YES;
     UITapGestureRecognizer *buttonTap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
-
+    
     buttonTap2.cancelsTouchesInView = NO;
-    vsview.frame = _bgView.bounds;
-    _bgView = vsview;
+    
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] > 8.0) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        UIVisualEffectView *vsview = [[UIVisualEffectView alloc]initWithEffect:blur];
+        vsview.frame = _bgView.bounds;
+        _bgView = vsview;
+    }
+    
+    
     [_bgView addGestureRecognizer:buttonTap2];
     
     
@@ -113,8 +119,8 @@ CGFloat buttonToScreenHeight;
     _normalImageView.layer.shadowColor = [UIColor blackColor].CGColor;
     _normalImageView.layer.shadowRadius = 5.f;
     _normalImageView.layer.shadowOffset = CGSizeMake(-10, -10);
-
-
+    
+    
     
     _pressedImageView  = [[UIImageView alloc]initWithFrame:self.bounds];
     _pressedImageView.contentMode = UIViewContentModeScaleAspectFit;
