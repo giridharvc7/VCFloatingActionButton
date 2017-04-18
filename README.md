@@ -31,6 +31,6 @@ addButton.hideWhileScrolling = YES;
 
 P.S: This was done in a short time, please feel free to contribute
 
-##License
+## License
 MIT License
 
