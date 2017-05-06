@@ -50,6 +50,7 @@
     
 }
 
+#pragma mark UITableView Delegate and DataSources methods
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -72,7 +73,7 @@
     return cell;
 }
 
-
+#pragma mark floatMenuDelegate methods
 -(void) didSelectMenuOptionAtIndex:(NSInteger)row
 {
     NSLog(@"Floating action tapped index %tu",row);
