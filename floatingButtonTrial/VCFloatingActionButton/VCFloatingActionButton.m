@@ -123,9 +123,10 @@ CGFloat buttonToScreenHeight;
     
     _normalImageView.image = _normalImage;
     _pressedImageView.image = _pressedImage;
-    
-    
-    [_bgView addSubview:_menuTable];
+   
+    //crash fixed iOS11 - [_bgView addSubview:_menuTable];
+    [[(UIVisualEffectView *)_bgView contentView] addSubview:_menuTable];
+
     
     [_buttonView addSubview:_pressedImageView];
     [_buttonView addSubview:_normalImageView];
