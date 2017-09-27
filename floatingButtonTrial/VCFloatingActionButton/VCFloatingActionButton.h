@@ -32,12 +32,23 @@
 @property (strong,nonatomic) UIImage *pressedImage, *normalImage;
 @property (strong,nonatomic) NSDictionary *menuItemSet;
 
+@property UIBlurEffectStyle blurEffectStyle;
+@property float backgroundAlpha;
+@property UIColor *menuTextColor;
 
 @property BOOL isMenuVisible;
 @property UIView *windowView;
 
--(id)initWithFrame:(CGRect)frame normalImage:(UIImage*)passiveImage andPressedImage:(UIImage*)activeImage withScrollview:(UIScrollView*)scrView;
-//-(void) setupButton;
+//For use in a scroll view
+-(id)initWithFrame:(CGRect)frame
+       normalImage:(UIImage*)passiveImage
+   andPressedImage:(UIImage*)activeImage
+    withScrollview:(UIScrollView*)scrView;
+
+//For use in not a scroll view
+-(id)initWithFrame:(CGRect)frame
+       normalImage:(UIImage*)passiveImage
+   andPressedImage:(UIImage*)activeImage;
 
 
 @end

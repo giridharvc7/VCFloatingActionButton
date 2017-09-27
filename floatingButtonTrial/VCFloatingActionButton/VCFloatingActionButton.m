@@ -26,7 +26,9 @@ CGFloat buttonToScreenHeight;
 
 @synthesize bgScroller;
 
--(id)initWithFrame:(CGRect)frame normalImage:(UIImage*)passiveImage andPressedImage:(UIImage*)activeImage withScrollview:(UIScrollView*)scrView
+-(id)initWithFrame:(CGRect)frame
+       normalImage:(UIImage*)passiveImage
+   andPressedImage:(UIImage*)activeImage
 {
     self = [super initWithFrame:frame];
     if (self)
@@ -36,7 +38,7 @@ CGFloat buttonToScreenHeight;
         _buttonView = [[UIView alloc]initWithFrame:frame];
         _buttonView.backgroundColor = [UIColor clearColor];
         _buttonView.userInteractionEnabled = YES;
-
+        
         buttonToScreenHeight = SCREEN_HEIGHT - CGRectGetMaxY(self.frame);
         
         _menuTable = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4, 0, 0.75*SCREEN_WIDTH,SCREEN_HEIGHT - (SCREEN_HEIGHT - CGRectGetMaxY(self.frame)) )];
@@ -51,13 +53,33 @@ CGFloat buttonToScreenHeight;
         _menuTable.backgroundColor = [UIColor clearColor];
         _menuTable.transform = CGAffineTransformMakeRotation(-M_PI); //Rotate the table
         
-        previousOffset = scrView.contentOffset.y;
+        previousOffset = 0;
+        bgScroller = nil;
         
-        bgScroller = scrView;
-
         _pressedImage = activeImage;
         _normalImage = passiveImage;
         [self setupButton];
+        
+        self.blurEffectStyle = UIBlurEffectStyleDark;
+        self.backgroundAlpha = 0.8;
+        
+    }
+    return self;
+}
+
+-(id)initWithFrame:(CGRect)frame
+       normalImage:(UIImage*)passiveImage
+   andPressedImage:(UIImage*)activeImage
+    withScrollview:(UIScrollView*)scrView
+{
+    self = [self initWithFrame:frame
+                   normalImage:passiveImage
+               andPressedImage:activeImage];
+    if (self)
+    {
+        previousOffset = scrView.contentOffset.y;
+        
+        bgScroller = scrView;
         
     }
     return self;
@@ -91,7 +113,7 @@ CGFloat buttonToScreenHeight;
     [_buttonView addGestureRecognizer:buttonTap3];
     
     
-    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:self.blurEffectStyle];
     UIVisualEffectView *vsview = [[UIVisualEffectView alloc]initWithEffect:blur];
     
 
@@ -351,7 +373,7 @@ CGFloat buttonToScreenHeight;
     
     cell.imgView.image = [UIImage imageNamed:[_imageArray objectAtIndex:indexPath.row]];
     cell.title.text    = [_labelArray objectAtIndex:indexPath.row];
-
+    cell.title.textColor = self.menuTextColor;
     
     return cell;
 }
